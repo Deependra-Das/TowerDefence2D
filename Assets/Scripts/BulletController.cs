@@ -13,6 +13,9 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2D_Bullet;
 
+    [SerializeField]
+    private int bulletPower = 1;
+
     private void FixedUpdate()
     {
         if (target!=null)
@@ -33,6 +36,7 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        other.gameObject.GetComponent<EnemyController>().TakeDamge(bulletPower);
         Destroy(gameObject);
     }
 

@@ -138,3 +138,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   rb2D_Enemy: {fileID: 5189618171246750245}
+  enemyHealth: 2
