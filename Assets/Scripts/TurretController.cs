@@ -11,32 +11,50 @@ public class TurretController : MonoBehaviour
     private Transform turretRotationPoint;
 
     [SerializeField]
-    private float rotationSpeed=5f;
+    private float rotationSpeed = 5f;
 
     [SerializeField]
     private LayerMask enemyMask;
 
+    [SerializeField]
+    private GameObject bulletPrefab;
+
+    [SerializeField]
+    private Transform firingPoint;
+
+    [SerializeField]
+    private float rateOfFire = 1f;
+
     private Transform target;
+
+    private float timeUntilFire;
 
     private void Update()
     {
         if (target == null)
         {
             FindTarget();
+            return;
         }
-        else if (target != null)
-        {
-            if (!CheckTargetInRadius())
-            {
-                target = null;
-            }
-            else
-            {
+        RotateTowardsTarget();
 
-                RotateTowardsTarget();
+        if (!CheckTargetInRadius())
+        {
+            target = null;
+        }
+        else
+        {
+
+            timeUntilFire += Time.deltaTime;
+
+            if (timeUntilFire >= 1f / rateOfFire)
+            {
+                ShootBullet();
+                timeUntilFire = 0;
             }
         }
-  
+
+
     }
 
     private void FindTarget()
@@ -45,13 +63,13 @@ public class TurretController : MonoBehaviour
 
         if (hits.Length > 0)
         {
-            target=hits[0].transform;
+            target = hits[0].transform;
         }
     }
 
     private void RotateTowardsTarget()
     {
-        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg -90f;
+        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
 
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -60,5 +78,13 @@ public class TurretController : MonoBehaviour
     private bool CheckTargetInRadius()
     {
         return Vector2.Distance(target.position, transform.position) <= targetingRadius;
+    }
+
+    private void ShootBullet()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        BulletController bulletController = bulletObj.GetComponent<BulletController>();
+
+        bulletController.SetTarget(target);
     }
 }
