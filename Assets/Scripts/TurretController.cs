@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     [SerializeField]
-    private float targetingRange = 3f;
+    private float targetingRadius = 3f;
 
     [SerializeField]
     private Transform turretRotationPoint;
@@ -26,7 +26,7 @@ public class TurretController : MonoBehaviour
         }
         else if (target != null)
         {
-            if (!checkTargetInRange())
+            if (!CheckTargetInRadius())
             {
                 target = null;
             }
@@ -41,7 +41,7 @@ public class TurretController : MonoBehaviour
 
     private void FindTarget()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2)transform.position, 0f, enemyMask);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRadius, (Vector2)transform.position, 0f, enemyMask);
 
         if (hits.Length > 0)
         {
@@ -57,8 +57,8 @@ public class TurretController : MonoBehaviour
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    private bool checkTargetInRange()
+    private bool CheckTargetInRadius()
     {
-        return Vector2.Distance(target.position, transform.position) <= targetingRange;
+        return Vector2.Distance(target.position, transform.position) <= targetingRadius;
     }
 }
