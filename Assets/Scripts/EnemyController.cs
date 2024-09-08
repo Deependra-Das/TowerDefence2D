@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb2D_Enemy;
 
+    [SerializeField]
+    private int enemyHealth = 2;
+
     private Transform destination;
     private int pathIndex = 0;
     
@@ -44,5 +47,16 @@ public class EnemyController : MonoBehaviour
         Vector2 direction = (destination.position - transform.position).normalized;
         rb2D_Enemy.velocity= direction * moveSpeed;
 
+    }
+
+    public void TakeDamge(int damageValue)
+    {
+        enemyHealth-=damageValue;
+
+        if(enemyHealth<=0)
+        {
+            EnemySpawnManager.onEnemyDestroy.Invoke();
+            Destroy(gameObject);
+        }
     }
 }
