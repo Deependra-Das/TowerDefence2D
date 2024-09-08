@@ -217,7 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetingRadius: 3
   turretRotationPoint: {fileID: 539152517910248187}
-  rotationSpeed: 200
+  rotationSpeed: 500
   enemyMask:
     serializedVersion: 2
     m_Bits: 64

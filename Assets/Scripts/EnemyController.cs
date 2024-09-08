@@ -16,10 +16,13 @@ public class EnemyController : MonoBehaviour
 
     private Transform destination;
     private int pathIndex = 0;
+
+    private bool isDead;
     
     void Start()
     {
         destination = GameManager.Instance.path[pathIndex];
+        isDead = false;
     }
 
     void Update()
@@ -53,9 +56,10 @@ public class EnemyController : MonoBehaviour
     {
         enemyHealth-=damageValue;
 
-        if(enemyHealth<=0)
+        if(enemyHealth<=0 && !isDead)
         {
             EnemySpawnManager.onEnemyDestroy.Invoke();
+            isDead = true;
             Destroy(gameObject);
         }
     }
