@@ -16,13 +16,15 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private int bulletPower = 1;
 
+    private Vector2 direction;
+
     private void FixedUpdate()
     {
         if (target!=null)
         {
-            Vector2 direction = (target.position - transform.position).normalized;
-
+            direction = (target.position - transform.position).normalized;
             rb2D_Bullet.velocity = direction * bulletSpeed;
+            RotateTowardsTarget();
         }
         
 
@@ -38,6 +40,14 @@ public class BulletController : MonoBehaviour
     {
         other.gameObject.GetComponent<EnemyController>().TakeDamge(bulletPower);
         Destroy(gameObject);
+    }
+
+    private void RotateTowardsTarget()
+    {
+        float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        transform.rotation = targetRotation;
     }
 
 }
