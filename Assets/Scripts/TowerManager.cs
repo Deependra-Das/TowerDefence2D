@@ -11,7 +11,7 @@ public class TowerManager : MonoBehaviour
     [SerializeField]
     private Tower[] towerList;
 
-    private TowerTypes selectedTower;
+    private TowerTypes selectedTower= TowerTypes.NONE;
 
     private void Awake()
     {
@@ -26,11 +26,6 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        selectedTower = TowerTypes.BASIC;
-    }
-
     public Tower GetTower(TowerTypes type)
     {
         Tower towerItem = Array.Find(towerList, item => item.towerType == type);
@@ -41,11 +36,30 @@ public class TowerManager : MonoBehaviour
         return null;
     }
 
-    public GameObject GetSelectedTower()
+    public Tower GetSelectedTower()
     {
-        return GetTower(selectedTower).towerPrefab;
+        return GetTower(selectedTower);
     }
 
+    public void SetSelectedTower(TowerTypes type)
+    {
+        switch(type)
+        {
+            case TowerTypes.BASIC:
+                selectedTower = TowerTypes.BASIC;
+                break;
+
+            case TowerTypes.HEAVY:
+                selectedTower = TowerTypes.HEAVY;
+                break;
+
+            case TowerTypes.FREEZE:
+                selectedTower = TowerTypes.FREEZE;
+                break;
+
+        }
+
+    }
 }
 
 public enum TowerTypes
@@ -53,6 +67,7 @@ public enum TowerTypes
     BASIC,
     HEAVY,
     FREEZE,
+    NONE,
 }
 
 [Serializable]

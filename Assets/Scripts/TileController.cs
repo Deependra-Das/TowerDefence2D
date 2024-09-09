@@ -38,7 +38,19 @@ public class TileController : MonoBehaviour
 
     private void BuildTower()
     {
-        GameObject newTowerBuild = TowerManager.Instance.GetSelectedTower();
-        Instantiate(newTowerBuild, transform.position, Quaternion.identity);
+        Tower newTowerBuild = TowerManager.Instance.GetSelectedTower();
+        if(newTowerBuild==null)
+        {
+            Debug.Log("Select a Tower to Build.");
+            return;
+        }
+        if(newTowerBuild.buildCost > GameManager.Instance.currency)
+        {
+            Debug.Log("Insufficient Funds. Earn More Currency.");
+            return;
+        }
+        GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);    
+
+        Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
     }
 }

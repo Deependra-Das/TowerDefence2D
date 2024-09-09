@@ -10,9 +10,6 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private float coolDownBetweenWaves = 5.0f;
 
-    [SerializeField]
-    private float difficultyScalingFactor = 0.75f;
-
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
     private int currentWave = 0;
