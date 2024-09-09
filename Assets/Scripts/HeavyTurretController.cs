@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretController : MonoBehaviour
+public class HeavyTurretController : MonoBehaviour
 {
     [SerializeField]
-    private float targetingRadius = 3f;
-
-    [SerializeField]
-    private Transform turretRotationPoint;
+    private float targetingRadius = 5f;
 
     [SerializeField]
     private float rotationSpeed = 5f;
@@ -17,17 +14,20 @@ public class TurretController : MonoBehaviour
     private LayerMask enemyMask;
 
     [SerializeField]
+    private float rateOfFire = 1f;
+
+    [SerializeField]
+    private Transform turretRotationPoint;
+
+    [SerializeField]
     private GameObject bulletPrefab;
 
     [SerializeField]
     private Transform firingPoint;
 
-    [SerializeField]
-    private float rateOfFire = 1f;
-
     private Transform target;
 
-    private float timeUntilFire=0f;
+    private float timeUntilFire = 0f;
 
     private void Update()
     {

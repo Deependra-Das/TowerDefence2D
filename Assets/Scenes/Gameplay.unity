@@ -2048,6 +2048,12 @@ MonoBehaviour:
   - towerType: 0
     towerPrefab: {fileID: 539152518175691420, guid: 8959f48530db2ee4d903db5390486701, type: 3}
     buildCost: 50
+  - towerType: 1
+    towerPrefab: {fileID: 539152518175691420, guid: c6e37032799df674ebfc0bcbcf483f3d, type: 3}
+    buildCost: 100
+  - towerType: 2
+    towerPrefab: {fileID: 539152518175691420, guid: 9a66d7e9fdf13cc4db4360598adb4c3e, type: 3}
+    buildCost: 150
 --- !u!1 &461017691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6739,16 +6745,29 @@ MonoBehaviour:
   coolDownBetweenWaves: 5
   enemyPrefabs:
   - {fileID: 5189618171246750240, guid: de38aa0384cbe124b9f73e714bff22ca, type: 3}
-  enemyWaves:
+  - {fileID: 5189618171246750240, guid: ecdd5dca9a7c66e43a80c1afffca57bf, type: 3}
+  - {fileID: 5189618171246750240, guid: c8c73d97cc5c9bb4bb996c93b94c2239, type: 3}
+  enemyWavesList:
   - enemyWaveIndex: 0
     numberOfEnemies: 5
     enemyFrequency: 0.5
+    enemySpawnOrder: 0000000000000000000000000000000000000000
   - enemyWaveIndex: 1
     numberOfEnemies: 10
-    enemyFrequency: 0.5
+    enemyFrequency: 2.5
+    enemySpawnOrder: 00000000000000000100000000000000000000000100000000000000000000000100000000000000
   - enemyWaveIndex: 2
     numberOfEnemies: 15
-    enemyFrequency: 0.5
+    enemyFrequency: 2.5
+    enemySpawnOrder: 000000000000000000000000010000000000000000000000000000000200000000000000000000000000000001000000000000000000000000000000
+  - enemyWaveIndex: 3
+    numberOfEnemies: 20
+    enemyFrequency: 2.5
+    enemySpawnOrder: 0000000000000000000000000100000000000000000000000000000001000000020000000200000000000000000000000000000001000000000000000000000000000000010000000000000000000000
+  - enemyWaveIndex: 4
+    numberOfEnemies: 30
+    enemyFrequency: 5
+    enemySpawnOrder: 000000000000000000000000010000000200000000000000000000000000000002000000010000000000000000000000000000000100000002000000000000000000000000000000020000000100000000000000000000000000000002000000010000000000000000000000000000000200000002000000
 --- !u!4 &1422283728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946981348143541424, guid: 968fc3c5e6fbfb149a86996bba1c34ff, type: 3}

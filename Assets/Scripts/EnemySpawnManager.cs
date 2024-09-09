@@ -22,7 +22,7 @@ public class EnemySpawnManager : MonoBehaviour
     private GameObject[] enemyPrefabs;
 
     [SerializeField]
-    private EnemyWaveSystem[] enemyWaves;
+    private EnemyWaveSystem[] enemyWavesList;
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class EnemySpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartWave());
+        Debug.Log(enemyWavesList.Length);
     }
 
     void Update()
@@ -69,7 +70,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastEnemySpawned = 0f;
-        if(currentWave<2)
+        if(currentWave< enemyWavesList.Length-1)
         {
             currentWave++;
             StartCoroutine(StartWave());
@@ -83,13 +84,13 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject prefabToSpawn = enemyPrefabs[0];
+        GameObject prefabToSpawn = enemyPrefabs[currentWave<enemiesLeftToSpawn? currentWave % enemyPrefabs.Length: enemiesLeftToSpawn % enemyPrefabs.Length];
         Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
     }
 
     private EnemyWaveSystem getEnemyWaveSystem(EnemyWaveIndex waveIndex)
     {
-        EnemyWaveSystem waveItem = Array.Find(enemyWaves, item => item.enemyWaveIndex == waveIndex);
+        EnemyWaveSystem waveItem = Array.Find(enemyWavesList, item => item.enemyWaveIndex == waveIndex);
         if (waveItem != null)
         {
             return waveItem;
@@ -105,12 +106,22 @@ public enum EnemyWaveIndex
     Wave1,
     Wave2,
     Wave3,
+    Wave4,
+    Wave5,
 }
 
 [Serializable]
 public class EnemyWaveSystem
 {
     public EnemyWaveIndex enemyWaveIndex;
-    public int numberOfEnemies = 8;
+    public int numberOfEnemies = 3;
     public float enemyFrequency = 0.5f;
+    public EnemyType[] enemySpawnOrder;
+}
+
+public enum EnemyType
+{
+    SMALL,
+    MEDIUM,
+    TANK,
 }

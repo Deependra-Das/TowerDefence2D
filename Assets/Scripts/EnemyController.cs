@@ -21,11 +21,14 @@ public class EnemyController : MonoBehaviour
     private int pathIndex = 0;
 
     private bool isDead;
+
+    private float currentSpeed;
     
     void Start()
     {
         destination = GameManager.Instance.path[pathIndex];
         isDead = false;
+        currentSpeed = moveSpeed;
     }
 
     void Update()
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 direction = (destination.position - transform.position).normalized;
-        rb2D_Enemy.velocity= direction * moveSpeed;
+        rb2D_Enemy.velocity= direction * currentSpeed;
 
     }
 
@@ -66,5 +69,15 @@ public class EnemyController : MonoBehaviour
             isDead = true;
             Destroy(gameObject);
         }
+    }
+
+    public void UpdateSpeed(float speedValue)
+    {
+        currentSpeed = speedValue;
+    }
+
+    public void ResetSpeed()
+    {
+        currentSpeed = moveSpeed;
     }
 }
