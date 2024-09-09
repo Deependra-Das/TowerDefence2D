@@ -27,7 +27,7 @@ public class TurretController : MonoBehaviour
 
     private Transform target;
 
-    private float timeUntilFire;
+    private float timeUntilFire=0f;
 
     private void Update()
     {

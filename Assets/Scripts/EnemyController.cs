@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int enemyHealth = 2;
 
+    [SerializeField]
+    private int currencyDrop = 50;
+
     private Transform destination;
     private int pathIndex = 0;
 
@@ -59,6 +62,7 @@ public class EnemyController : MonoBehaviour
         if(enemyHealth<=0 && !isDead)
         {
             EnemySpawnManager.onEnemyDestroy.Invoke();
+            GameManager.Instance.AddCurrency(currencyDrop);
             isDead = true;
             Destroy(gameObject);
         }
