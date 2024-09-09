@@ -127,9 +127,9 @@ GameObject:
   m_Component:
   - component: {fileID: 539152518175691410}
   - component: {fileID: 539152518175691411}
-  - component: {fileID: 539152518175691409}
+  - component: {fileID: 6522665033726053276}
   m_Layer: 0
-  m_Name: TurretTower
+  m_Name: Turret_Freeze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &539152518175691409
+--- !u!114 &6522665033726053276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,18 +212,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 539152518175691420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 020d96b83be43994498c4d19eb0a0ced, type: 3}
+  m_Script: {fileID: 11500000, guid: a3dc3489fd5154f499330c9c750ce0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRadius: 3
-  turretRotationPoint: {fileID: 539152517910248187}
-  rotationSpeed: 1000
+  targetingRadius: 2
+  rotationSpeed: 5
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  bulletPrefab: {fileID: 8158466242868441280, guid: f20719316c03195418e0b6bac33958ca, type: 3}
-  firingPoint: {fileID: 4425863868525987872}
-  rateOfFire: 1
+  rateOfFire: 0.25
+  turretRotationPoint: {fileID: 539152517910248187}
+  freezemoveSpeed: 1
+  freezeDuration: 0.5
 --- !u!1 &4973689453867877641
 GameObject:
   m_ObjectHideFlags: 0
