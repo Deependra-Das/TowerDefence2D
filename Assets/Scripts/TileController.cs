@@ -16,6 +16,7 @@ public class TileController : MonoBehaviour
 
     [SerializeField]
     private Color colorOnHover;
+
     void Start()
     {
         initialColor=sr_Tile.color; 
@@ -64,7 +65,9 @@ public class TileController : MonoBehaviour
         GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);
 
         towerObj=Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
+        TowerManager.Instance.AddTurretToList(towerObj);
         turretControllerObj = towerObj.GetComponent<TurretController>();
 
     }
+
 }

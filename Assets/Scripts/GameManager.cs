@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameUIManager gameUIManagerObj;
 
+    [SerializeField]
+    private GameOverController gameOverControllerObj;
+
     public Transform startPoint;
     public Transform[] path;
 
@@ -39,12 +42,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void ResetGameManager()
     {
         currency = initialCurrency;
         playerHealth = MaxHealth;
         gameUIManagerObj.setMaxHealth(MaxHealth);
         isGameOver = false;
+        gameOverControllerObj.gameObject.SetActive(false);
     }
 
     public void AddCurrency(int amount)
@@ -75,7 +79,12 @@ public class GameManager : MonoBehaviour
         {
             playerHealth = 0;
             isGameOver = true;
-            Debug.Log("Game Over");
+            OnGameOver();
         }
+    }
+
+    public void OnGameOver()
+    {
+        gameOverControllerObj.gameObject.SetActive(true);
     }
 }

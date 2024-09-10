@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.PlayerLoop;
@@ -23,6 +24,8 @@ public class EnemySpawnManager : MonoBehaviour
     private int spawnCounter=0;
     private EnemyType[] enemySpawnOrder;
 
+    private List<Transform> enemies;
+
     [SerializeField]
     private GameObject[] enemyPrefabs;
 
@@ -32,13 +35,10 @@ public class EnemySpawnManager : MonoBehaviour
     private void Awake()
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
+        enemies = new List<Transform>();
     }
 
-    void Start()
-    {
-        RestartSpawner();
-    }
-    void RestartSpawner()
+    public void StartSpawner()
     {
         currentWave = 0;
         isSpawning = false;
@@ -71,6 +71,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     private IEnumerator StartWave()
     {
+        enemies = new List<Transform>();
         int waveNumber = currentWave + 1;
         gameUIManagerObj.SetWaveText("Wave " + waveNumber);
         gameUIManagerObj.SetLabelText("Starts in");
@@ -103,24 +104,28 @@ public class EnemySpawnManager : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject prefabToSpawn;
+        GameObject newEnemy;
 
         switch (enemySpawnOrder[spawnCounter])
         {
             case EnemyType.SMALL:
                 prefabToSpawn = enemyPrefabs[0];
-                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                enemies.Add(newEnemy.transform);
                 break;
             case EnemyType.MEDIUM:
                 prefabToSpawn = enemyPrefabs[1];
-                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                enemies.Add(newEnemy.transform);
                 break;
             case EnemyType.TANK:
                 prefabToSpawn = enemyPrefabs[2];
-                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                enemies.Add(newEnemy.transform);
                 break;
         }
-     
-        spawnCounter++;
+  
+           spawnCounter++;
     }
 
     private EnemyWaveSystem getEnemyWaveSystem(EnemyWaveIndex waveIndex)
@@ -131,6 +136,23 @@ public class EnemySpawnManager : MonoBehaviour
             return waveItem;
         }
         return null;
+    }
+
+    public void DestroyAllEnemiesOnScreen()
+    {
+        if(enemies.Count>0)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if(enemies[i]!=null)
+                {
+                    EnemyDestroyed();
+                    Destroy(enemies[i].transform.gameObject);
+                }
+            
+            }
+        }
+       
     }
 
 
