@@ -13,6 +13,8 @@ public class TowerManager : MonoBehaviour
 
     private TowerTypes selectedTower= TowerTypes.NONE;
 
+    private List<Transform> turrets;
+
     private void Awake()
     {
         if (instance == null)
@@ -24,6 +26,11 @@ public class TowerManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        turrets = new List<Transform>();
     }
 
     public Tower GetTower(TowerTypes type)
@@ -58,6 +65,29 @@ public class TowerManager : MonoBehaviour
                 break;
 
         }
+
+    }
+
+    public void AddTurretToList(GameObject towerObj)
+    {
+        turrets.Add(towerObj.transform);
+    }
+
+    public void DestroyAllTurretsOnScreen()
+    {
+        if (turrets.Count > 0)
+        {
+            for (int i = 0; i < turrets.Count; i++)
+            {
+                if (turrets[i] != null)
+                {
+                    Destroy(turrets[i].transform.gameObject);
+                }
+
+            }
+        }
+
+        turrets=new List<Transform> ();
 
     }
 }

@@ -1,27 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class LobbyController : MonoBehaviour
-{
 
+public class GameOverController : MonoBehaviour
+{
     [SerializeField]
     private EnemySpawnManager enemySpawnManagerObj;
 
     [SerializeField]
-    private TileController tileControllerObj;
+    private LobbyController lobbyControllerObj;
 
     [SerializeField]
-    private Button StartGameButton;
+    private Button RetartGameButton;
 
     [SerializeField]
-    private Button QuitGameButton;
+    private Button BackButton;
 
     private void Start()
     {
-        StartGameButton.onClick.AddListener(OnStartGameButtonClick);
-        QuitGameButton.onClick.AddListener(OnQuitGameButtonClick);
+        RetartGameButton.onClick.AddListener(OnStartGameButtonClick);
+        BackButton.onClick.AddListener(OnBackButtonClick);
     }
 
     private void OnStartGameButtonClick()
@@ -33,9 +32,12 @@ public class LobbyController : MonoBehaviour
         enemySpawnManagerObj.StartSpawner();
     }
 
-    private void OnQuitGameButtonClick()
+    private void OnBackButtonClick()
     {
-        Application.Quit();
+        this.gameObject.SetActive(false);
+
+        lobbyControllerObj.gameObject.SetActive(true);
+
     }
 
 }
