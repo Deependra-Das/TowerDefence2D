@@ -239,6 +239,7 @@ MonoBehaviour:
   rateOfFireText: {fileID: 2179885691284810571}
   targetingRadiusText: {fileID: 6098046260026866702}
   upgradeButtonText: {fileID: 2017520561063292027}
+  removeButtonText: {fileID: 2250393484845740531}
   turretBarrel_lvl_1: {fileID: 539152517929400599}
   turretBarrel_lvl_2: {fileID: 2123999307773184088}
   turretBarrel_lvl_3: {fileID: 5257162210995028115}
@@ -644,6 +645,17 @@ MonoBehaviour:
 --- !u!114 &2179885691284810571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2152745809258433111, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+  m_PrefabInstance: {fileID: 261372145848000796}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2250393484845740531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2061404426675343599, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
   m_PrefabInstance: {fileID: 261372145848000796}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -75,6 +75,9 @@ public class TurretController : MonoBehaviour
     private TextMeshProUGUI upgradeButtonText;
 
     [SerializeField]
+    private TextMeshProUGUI removeButtonText;
+
+    [SerializeField]
     private GameObject turretBarrel_lvl_1;
 
     [SerializeField]
@@ -89,6 +92,10 @@ public class TurretController : MonoBehaviour
     [SerializeField]
     private Sprite[] turretLevels;
 
+    private int buildCost = 0;
+
+    private int currentSellValue = 0;
+
     private void Start()
     {
         currentRateOfFire = rateOfFire;
@@ -97,8 +104,10 @@ public class TurretController : MonoBehaviour
 
         upgradeButton.onClick.AddListener(UpgradeTurret);
         removeButton.onClick.AddListener(RemoveTurret);
-
         turretImage.sprite = turretLevels[0];
+
+        buildCost = TowerManager.Instance.GetTower(turretType).buildCost;
+        currentSellValue = buildCost/2;
     }
 
     private void Update()
@@ -215,7 +224,7 @@ public class TurretController : MonoBehaviour
         rateOfFireText.text = "Rate Of Fire : " + currentRateOfFire.ToString();
         targetingRadiusText.text = "Targeting Radius : " + currentTargetingRadius.ToString();
         upgradeButtonText.text = "Upgrade for " + currentUpgradeCost.ToString();
-
+        removeButtonText.text = "Sell for "+ currentSellValue.ToString();
     }
 
     public void CloseUIPanel()
@@ -254,6 +263,8 @@ public class TurretController : MonoBehaviour
         turretBarrel_lvl_1.SetActive(false);
         turretBarrel_lvl_2.SetActive(true);
         turretImage.sprite = turretLevels[1];
+
+        currentSellValue += upgradeCost_Lvl1 / 2;
     }
 
     private void UpgradeTurretLevel2()
@@ -270,27 +281,16 @@ public class TurretController : MonoBehaviour
         turretBarrel_lvl_2.SetActive(false);
         turretBarrel_lvl_3.SetActive(true);
         turretImage.sprite = turretLevels[2];
-
+        currentSellValue += upgradeCost_Lvl2 / 2;
         upgradeButton.interactable = false;
     }
 
     public void RemoveTurret()
     {
-        int buildCost = TowerManager.Instance.GetTower(turretType).buildCost;
         AudioManager.Instance.PlaySFX(AudioTypeList.turretRemove);
 
-        switch (upgradeLevel)
-        {
-            case 0:
-                GameManager.Instance.AddCurrency(buildCost/2);
-                break;
-            case 1:
-                GameManager.Instance.AddCurrency((buildCost+upgradeCost_Lvl1)/2);
-                break;
-            case 2:
-                GameManager.Instance.AddCurrency((buildCost + upgradeCost_Lvl1+upgradeCost_Lvl2)/2);
-                break;
-        }
+        GameManager.Instance.AddCurrency(currentSellValue / 2);
+
         UIManager.Instance.SetHoveringState(false);
         Destroy(gameObject);
     }
