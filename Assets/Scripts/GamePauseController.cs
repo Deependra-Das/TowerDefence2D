@@ -3,37 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverController : MonoBehaviour
+public class GamePauseController : MonoBehaviour
 {
-    [SerializeField]
-    private EnemySpawnManager enemySpawnManagerObj;
 
     [SerializeField]
     private LobbyController lobbyControllerObj;
 
     [SerializeField]
-    private Button RestartGameButton;
+    private Button ResumeGameButton;
 
     [SerializeField]
     private Button BackButton;
 
     private void Start()
     {
-        RestartGameButton.onClick.AddListener(OnRestartGameButtonClick);
+        ResumeGameButton.onClick.AddListener(OnResumeGameButtonClick);
         BackButton.onClick.AddListener(OnBackButtonClick);
     }
 
-    private void OnRestartGameButtonClick()
+    private void OnResumeGameButtonClick()
     {
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
-        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
-        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
+        UIManager.Instance.SetHoveringState(false);
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
-        GameManager.Instance.ResetGameManager();
-        enemySpawnManagerObj.DestroyAllEnemiesOnScreen();
-        TowerManager.Instance.DestroyAllTurretsOnScreen();
-        enemySpawnManagerObj.StartSpawner();
     }
 
     private void OnBackButtonClick()
@@ -44,5 +37,4 @@ public class GameOverController : MonoBehaviour
         lobbyControllerObj.gameObject.SetActive(true);
 
     }
-
 }

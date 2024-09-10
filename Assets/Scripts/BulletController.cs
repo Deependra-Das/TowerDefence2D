@@ -18,16 +18,18 @@ public class BulletController : MonoBehaviour
 
     private Vector2 direction;
 
+    private void Start()
+    {
+        RotateTowardsTarget();
+    }
+
     private void FixedUpdate()
     {
         if (target!=null)
         {
             direction = (target.position - transform.position).normalized;
             rb2D_Bullet.velocity = direction * bulletSpeed;
-            RotateTowardsTarget();
         }
-        
-
     }
 
     public void SetTarget(Transform targetEnemy)

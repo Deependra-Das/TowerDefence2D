@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameOverController gameOverControllerObj;
 
+    [SerializeField]
+    private GameCompletedController gameCompletedControllerObj;
+
+    [SerializeField]
+    private GamePauseController gamePauseControllerObj;
+
     public Transform startPoint;
     public Transform[] path;
 
@@ -41,6 +47,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && isGameOver==false)
+        {
+            OnGamePaused();
+            Time.timeScale = 0f;
+        }
+    }
 
     public void ResetGameManager()
     {
@@ -49,6 +63,9 @@ public class GameManager : MonoBehaviour
         gameUIManagerObj.setMaxHealth(MaxHealth);
         isGameOver = false;
         gameOverControllerObj.gameObject.SetActive(false);
+        gameCompletedControllerObj.gameObject.SetActive(false);
+        gamePauseControllerObj.gameObject.SetActive(false);
+        UIManager.Instance.SetHoveringState(false);
     }
 
     public void AddCurrency(int amount)
@@ -88,6 +105,21 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, true);
         AudioManager.Instance.PlaySFX(AudioTypeList.gameOver);
         Time.timeScale = 0f;
+        UIManager.Instance.SetHoveringState(true);
         gameOverControllerObj.gameObject.SetActive(true);
+    }
+
+    public void OnGameCompleted()
+    {
+        Time.timeScale = 0f;
+        UIManager.Instance.SetHoveringState(true);
+        gameCompletedControllerObj.gameObject.SetActive(true);
+    }
+
+    public void OnGamePaused()
+    {
+        Time.timeScale = 0f;
+        UIManager.Instance.SetHoveringState(true);
+        gamePauseControllerObj.gameObject.SetActive(true);
     }
 }

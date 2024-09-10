@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverController : MonoBehaviour
+public class GameCompletedController : MonoBehaviour
 {
-    [SerializeField]
+ [SerializeField]
     private EnemySpawnManager enemySpawnManagerObj;
 
     [SerializeField]
@@ -44,5 +44,4 @@ public class GameOverController : MonoBehaviour
         lobbyControllerObj.gameObject.SetActive(true);
 
     }
-
 }
