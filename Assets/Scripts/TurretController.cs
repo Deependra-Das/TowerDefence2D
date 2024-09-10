@@ -83,6 +83,12 @@ public class TurretController : MonoBehaviour
     [SerializeField]
     private GameObject turretBarrel_lvl_3;
 
+    [SerializeField]
+    private Image turretImage;
+
+    [SerializeField]
+    private Sprite[] turretLevels;
+
     private void Start()
     {
         currentRateOfFire = rateOfFire;
@@ -91,6 +97,8 @@ public class TurretController : MonoBehaviour
 
         upgradeButton.onClick.AddListener(UpgradeTurret);
         removeButton.onClick.AddListener(RemoveTurret);
+
+        turretImage.sprite = turretLevels[0];
     }
 
     private void Update()
@@ -245,6 +253,7 @@ public class TurretController : MonoBehaviour
         currentRateOfFire = rateOfFire;
         turretBarrel_lvl_1.SetActive(false);
         turretBarrel_lvl_2.SetActive(true);
+        turretImage.sprite = turretLevels[1];
     }
 
     private void UpgradeTurretLevel2()
@@ -260,6 +269,9 @@ public class TurretController : MonoBehaviour
 
         turretBarrel_lvl_2.SetActive(false);
         turretBarrel_lvl_3.SetActive(true);
+        turretImage.sprite = turretLevels[2];
+
+        upgradeButton.interactable = false;
     }
 
     public void RemoveTurret()

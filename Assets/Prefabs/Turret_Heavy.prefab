@@ -242,6 +242,11 @@ MonoBehaviour:
   turretBarrel_lvl_1: {fileID: 539152517929400599}
   turretBarrel_lvl_2: {fileID: 6342120904567395633}
   turretBarrel_lvl_3: {fileID: 6831776065803567210}
+  turretImage: {fileID: 5637307149422178992}
+  turretLevels:
+  - {fileID: 21300000, guid: aa839151187718648ae36690d71fe716, type: 3}
+  - {fileID: 21300000, guid: b6e681b3eea00be468528b4cc071acbb, type: 3}
+  - {fileID: 21300000, guid: 26263a974e2e88a409de6ed7de9f2b75, type: 3}
 --- !u!1 &4973689453867877641
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +631,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4679272481720098904, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
   m_PrefabInstance: {fileID: 8890225747020599121}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5637307149422178992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3844897376618020321, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+  m_PrefabInstance: {fileID: 8890225747020599121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6023158417116195173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2951796873501648436, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
