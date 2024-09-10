@@ -17,6 +17,8 @@ public class EnemySpawnManager : MonoBehaviour
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
     private bool isSpawning =false;
+    private int spawnCounter=0;
+    private EnemyType[] enemySpawnOrder;
 
     [SerializeField]
     private GameObject[] enemyPrefabs;
@@ -64,6 +66,8 @@ public class EnemySpawnManager : MonoBehaviour
         yield return new WaitForSeconds(coolDownBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = getEnemyWaveSystem((EnemyWaveIndex)currentWave).numberOfEnemies;
+        spawnCounter = 0;
+        enemySpawnOrder= getEnemyWaveSystem((EnemyWaveIndex)currentWave).enemySpawnOrder;
     }
 
     private void EndWave()
@@ -84,8 +88,25 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject prefabToSpawn = enemyPrefabs[currentWave<enemiesLeftToSpawn? currentWave % enemyPrefabs.Length: enemiesLeftToSpawn % enemyPrefabs.Length];
-        Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+        GameObject prefabToSpawn;
+
+        switch (enemySpawnOrder[spawnCounter])
+        {
+            case EnemyType.SMALL:
+                prefabToSpawn = enemyPrefabs[0];
+                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                break;
+            case EnemyType.MEDIUM:
+                prefabToSpawn = enemyPrefabs[1];
+                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                break;
+            case EnemyType.TANK:
+                prefabToSpawn = enemyPrefabs[2];
+                Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+                break;
+        }
+     
+        spawnCounter++;
     }
 
     private EnemyWaveSystem getEnemyWaveSystem(EnemyWaveIndex waveIndex)

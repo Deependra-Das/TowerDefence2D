@@ -7,7 +7,10 @@ public class TileController : MonoBehaviour
     [SerializeField]
     private SpriteRenderer sr_Tile;
 
-    private GameObject tower;
+    private GameObject towerObj;
+
+    [SerializeField]
+    private TurretController turretControllerObj;
 
     private Color initialColor;
 
@@ -30,9 +33,18 @@ public class TileController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (tower == null)
+        if(UIManager.Instance.CheckHoveringState())
+        {
+            return;
+        }
+
+        if (towerObj == null)
         {
             BuildTower();
+        }
+        else
+        {
+            turretControllerObj.OpenUIPanel();
         }
     }
 
@@ -49,8 +61,10 @@ public class TileController : MonoBehaviour
             Debug.Log("Insufficient Funds. Earn More Currency.");
             return;
         }
-        GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);    
+        GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);
 
-        Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
+        towerObj=Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
+        turretControllerObj = towerObj.GetComponent<TurretController>();
+
     }
 }
