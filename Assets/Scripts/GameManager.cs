@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, true);
         AudioManager.Instance.PlaySFX(AudioTypeList.gameOver);
+        Time.timeScale = 0f;
         gameOverControllerObj.gameObject.SetActive(true);
     }
 }
