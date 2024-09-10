@@ -12207,7 +12207,7 @@ MonoBehaviour:
   currency: 0
   playerHealth: 100
   MaxHealth: 100
-  initialCurrency: 1000
+  initialCurrency: 100
   isGameOver: 0
 --- !u!114 &1303887755
 MonoBehaviour:

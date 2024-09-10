@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rb2D_Enemy: {fileID: 5189618171246750245}
-  enemyHealth: 5
+  enemyHealth: 7
   currencyDrop: 75
   enemyAnimator: {fileID: 414103650457494394}
 --- !u!95 &414103650457494394
