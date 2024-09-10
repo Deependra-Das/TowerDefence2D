@@ -74,7 +74,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastEnemySpawned = 0f;
-        if(currentWave< enemyWavesList.Length-1)
+        if(currentWave< enemyWavesList.Length-1 && GameManager.Instance.isGameOver==false)
         {
             currentWave++;
             StartCoroutine(StartWave());
