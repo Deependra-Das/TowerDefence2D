@@ -8,6 +8,9 @@ using UnityEngine.PlayerLoop;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField]
+    private GameUIManager gameUIManagerObj;
+
+    [SerializeField]
     private float coolDownBetweenWaves = 5.0f;
 
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -33,8 +36,13 @@ public class EnemySpawnManager : MonoBehaviour
 
     void Start()
     {
+        RestartSpawner();
+    }
+    void RestartSpawner()
+    {
+        currentWave = 0;
+        isSpawning = false;
         StartCoroutine(StartWave());
-        Debug.Log(enemyWavesList.Length);
     }
 
     void Update()
@@ -63,11 +71,17 @@ public class EnemySpawnManager : MonoBehaviour
 
     private IEnumerator StartWave()
     {
+        int waveNumber = currentWave + 1;
+        gameUIManagerObj.SetWaveText("Wave " + waveNumber);
+        gameUIManagerObj.SetLabelText("Starts in");
+        gameUIManagerObj.ShowTimerText(coolDownBetweenWaves);
         yield return new WaitForSeconds(coolDownBetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = getEnemyWaveSystem((EnemyWaveIndex)currentWave).numberOfEnemies;
         spawnCounter = 0;
         enemySpawnOrder= getEnemyWaveSystem((EnemyWaveIndex)currentWave).enemySpawnOrder;
+        gameUIManagerObj.SetLabelText("ONGOING");
+        gameUIManagerObj.HideTimerText();
     }
 
     private void EndWave()

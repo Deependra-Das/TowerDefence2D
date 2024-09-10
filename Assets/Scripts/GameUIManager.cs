@@ -21,6 +21,16 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private Slider slider;
 
+    [SerializeField]
+    private TextMeshProUGUI waveText;
+
+    [SerializeField]
+    private TextMeshProUGUI labelText;
+
+    [SerializeField]
+    private TextMeshProUGUI timerText;
+
+    private float remainingTime;
 
     private void Awake()
     {
@@ -28,7 +38,24 @@ public class GameUIManager : MonoBehaviour
         heavyTurretButton.onClick.AddListener(OnHeavyButtonSelected);
         freezeTurretButton.onClick.AddListener(OnFreezeButtonSelected);
     }
+    private void Update()
+    {
+        if (timerText.enabled)
+        {
+            if (remainingTime > 0)
+            {
+                remainingTime -= Time.deltaTime;
+            }
+            else if (remainingTime < 0)
+            {
+                remainingTime = 0;
+            }
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
 
+    }
     public void setMaxHealth(int healthValue)
     {
         slider.maxValue = healthValue;
@@ -59,5 +86,27 @@ public class GameUIManager : MonoBehaviour
     private void OnFreezeButtonSelected()
     {
         TowerManager.Instance.SetSelectedTower(TowerTypes.FREEZE);
+    }
+
+    public void SetWaveText(string textValue)
+    {
+        waveText.text = textValue;
+    }
+    public void SetLabelText(string textValue)
+    {
+        labelText.text = textValue;
+    }
+    public void SetTimerText(string textValue)
+    {
+        timerText.text = textValue;
+    }
+    public void ShowTimerText(float countdownValue)
+    {
+        remainingTime = countdownValue;
+        timerText.enabled = true;
+    }
+    public void HideTimerText()
+    {
+        timerText.enabled = false;
     }
 }
