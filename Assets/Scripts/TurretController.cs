@@ -151,6 +151,14 @@ public class TurretController : MonoBehaviour
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         BulletController bulletController = bulletObj.GetComponent<BulletController>();
+        if(turretType==TowerTypes.BASIC)
+        {
+            AudioManager.Instance.PlayTurretSFX(AudioTypeList.bulletShot);
+        }
+        else if (turretType == TowerTypes.HEAVY)
+        {
+            AudioManager.Instance.PlayTurretSFX(AudioTypeList.missileShot);
+        }
 
         bulletController.SetTarget(target);
     }
@@ -158,6 +166,7 @@ public class TurretController : MonoBehaviour
     private void FreezeEnemiesinRadius()
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, currentTargetingRadius, (Vector2)transform.position, 0f, enemyMask);
+        AudioManager.Instance.PlayTurretSFX(AudioTypeList.freezeShot);
 
         if (hits.Length > 0)
         {
@@ -222,12 +231,14 @@ public class TurretController : MonoBehaviour
 
     private void UpgradeTurretLevel1()
     {
-       rateOfFire=rateOfFire/2;
+        AudioManager.Instance.PlaySFX(AudioTypeList.turretUpgrade);
+        rateOfFire =rateOfFire/2;
         currentRateOfFire = rateOfFire;
     }
 
     private void UpgradeTurretLevel2()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.turretUpgrade);
         targetingRadius += 1;
         currentTargetingRadius = targetingRadius;
 
@@ -240,8 +251,9 @@ public class TurretController : MonoBehaviour
     public void RemoveTurret()
     {
         int buildCost = TowerManager.Instance.GetTower(turretType).buildCost;
+        AudioManager.Instance.PlaySFX(AudioTypeList.turretRemove);
 
-        switch(upgradeLevel)
+        switch (upgradeLevel)
         {
             case 0:
                 GameManager.Instance.AddCurrency(buildCost/2);

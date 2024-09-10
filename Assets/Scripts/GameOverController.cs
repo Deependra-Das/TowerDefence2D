@@ -25,6 +25,7 @@ public class GameOverController : MonoBehaviour
 
     private void OnStartGameButtonClick()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
         enemySpawnManagerObj.DestroyAllEnemiesOnScreen();
@@ -34,6 +35,7 @@ public class GameOverController : MonoBehaviour
 
     private void OnBackButtonClick()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         this.gameObject.SetActive(false);
 
         lobbyControllerObj.gameObject.SetActive(true);
