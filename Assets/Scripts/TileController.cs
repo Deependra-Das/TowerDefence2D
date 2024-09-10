@@ -63,8 +63,8 @@ public class TileController : MonoBehaviour
             return;
         }
         GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);
-
-        towerObj=Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
+        AudioManager.Instance.PlaySFX(AudioTypeList.turretPlaced);
+        towerObj =Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
         TowerManager.Instance.AddTurretToList(towerObj);
         turretControllerObj = towerObj.GetComponent<TurretController>();
 

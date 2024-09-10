@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
 
     public void OnGameOver()
     {
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, true);
+        AudioManager.Instance.PlaySFX(AudioTypeList.gameOver);
         gameOverControllerObj.gameObject.SetActive(true);
     }
 }

@@ -65,6 +65,7 @@ public class EnemyController : MonoBehaviour
         if(enemyHealth<=0 && !isDead)
         {
             EnemySpawnManager.onEnemyDestroy.Invoke();
+            AudioManager.Instance.PlayEnemySFX(AudioTypeList.enemyDeath);
             GameManager.Instance.AddCurrency(currencyDrop);
             isDead = true;
             Destroy(gameObject);
