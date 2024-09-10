@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameOverController gameOverControllerObj;
 
+    [SerializeField]
+    private GameCompletedController gameCompletedControllerObj;
+
     public Transform startPoint;
     public Transform[] path;
 
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
         gameUIManagerObj.setMaxHealth(MaxHealth);
         isGameOver = false;
         gameOverControllerObj.gameObject.SetActive(false);
+        gameCompletedControllerObj.gameObject.SetActive(false);
     }
 
     public void AddCurrency(int amount)
@@ -89,5 +93,13 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioTypeList.gameOver);
         Time.timeScale = 0f;
         gameOverControllerObj.gameObject.SetActive(true);
+    }
+
+    public void OnGameCompleted()
+    {
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, true);
+        AudioManager.Instance.PlaySFX(AudioTypeList.gameOver);
+        Time.timeScale = 0f;
+        gameCompletedControllerObj.gameObject.SetActive(true);
     }
 }

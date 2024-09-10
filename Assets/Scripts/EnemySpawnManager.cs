@@ -96,7 +96,7 @@ public class EnemySpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Completed");
+            GameManager.Instance.OnGameCompleted();
         }
       
     }
