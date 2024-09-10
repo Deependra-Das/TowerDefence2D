@@ -23,7 +23,10 @@ public class EnemyController : MonoBehaviour
     private bool isDead;
 
     private float currentSpeed;
-    
+
+    [SerializeField]
+    private Animator enemyAnimator;
+
     void Start()
     {
         destination = GameManager.Instance.path[pathIndex];
@@ -55,6 +58,39 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 direction = (destination.position - transform.position).normalized;
         rb2D_Enemy.velocity= direction * currentSpeed;
+
+        if((int)rb2D_Enemy.velocity.x>0 && (int)rb2D_Enemy.velocity.y==0)
+        {
+            enemyAnimator.SetBool("Right", true);
+            enemyAnimator.SetBool("Left", false);
+            enemyAnimator.SetBool("Top", false);
+            enemyAnimator.SetBool("Bottom", false);
+        }
+
+        else if ((int)rb2D_Enemy.velocity.x < 0 && (int)rb2D_Enemy.velocity.y == 0)
+        {
+            enemyAnimator.SetBool("Right", false);
+            enemyAnimator.SetBool("Left", true);
+            enemyAnimator.SetBool("Top", false);
+            enemyAnimator.SetBool("Bottom", false);
+        }
+
+        else if ((int)rb2D_Enemy.velocity.x == 0 && (int)rb2D_Enemy.velocity.y > 0)
+        {
+            enemyAnimator.SetBool("Right", false);
+            enemyAnimator.SetBool("Left", false);
+            enemyAnimator.SetBool("Top", true);
+            enemyAnimator.SetBool("Bottom", false);
+        }
+
+        else if ((int)rb2D_Enemy.velocity.x == 0 && (int)rb2D_Enemy.velocity.y < 0)
+        {
+            enemyAnimator.SetBool("Right", false);
+            enemyAnimator.SetBool("Left", false);
+            enemyAnimator.SetBool("Top", false);
+            enemyAnimator.SetBool("Bottom", true);
+        }
+
 
     }
 
