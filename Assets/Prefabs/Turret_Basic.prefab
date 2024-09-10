@@ -275,13 +275,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 539152518175691410}
     m_Modifications:
+    - target: {fileID: 1652062348963126449, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652062348963126449, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652062348963126449, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652062348963126449, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -70
+      objectReference: {fileID: 0}
     - target: {fileID: 3436684961651515436, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
       propertyPath: mouse_over
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3903605195173749117, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4679272481720098904, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
       propertyPath: m_Name
       value: TurretUIPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272481720098904, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062527877465508314, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062527877465508314, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062527877465508314, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062527877465508314, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -118.33333
       objectReference: {fileID: 0}
     - target: {fileID: 6266553281830931876, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
       propertyPath: m_Pivot.x
@@ -366,6 +406,22 @@ PrefabInstance:
     - target: {fileID: 6266553281830931876, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632497066713675699, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632497066713675699, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632497066713675699, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632497066713675699, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21.666666
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1145c5de9b7e5c944a642eb2a2e3d5d1, type: 3}

@@ -186,9 +186,10 @@ public class TurretController : MonoBehaviour
         uiPanel.SetActive(true);
         typeText.text="Type : " + turretType.ToString();
 
-        rateOfFireText.text = "Rate Of Fire : " + currentRateOfFire.ToString(); ; 
-        targetingRadiusText.text = "Targeting Radius : " + currentTargetingRadius.ToString(); ;
-        upgradeButtonText.text = "Upgrade for " + currentUpgradeCost.ToString(); ;
+        rateOfFireText.text = "Rate Of Fire : " + currentRateOfFire.ToString();
+        targetingRadiusText.text = "Targeting Radius : " + currentTargetingRadius.ToString();
+        upgradeButtonText.text = "Upgrade for " + currentUpgradeCost.ToString();
+
     }
 
     public void CloseUIPanel()

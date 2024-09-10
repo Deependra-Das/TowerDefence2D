@@ -19,4 +19,5 @@ public class TurretUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExit
         UIManager.Instance.SetHoveringState(false);
         gameObject.SetActive(false);
     }
+
 }
