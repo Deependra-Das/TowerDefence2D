@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,6 +62,18 @@ public class TurretController : MonoBehaviour
     private float currentTargetingRadius = 1f;
     private int currentUpgradeCost = 100;
 
+    [SerializeField]
+    private TextMeshProUGUI typeText;
+
+    [SerializeField]
+    private TextMeshProUGUI rateOfFireText;
+
+    [SerializeField]
+    private TextMeshProUGUI targetingRadiusText;
+
+    [SerializeField]
+    private TextMeshProUGUI upgradeButtonText;
+
     private void Start()
     {
         currentRateOfFire = rateOfFire;
@@ -108,9 +121,6 @@ public class TurretController : MonoBehaviour
                 timeUntilFire = 0;
             }
         }
-
-    
-
 
     }
 
@@ -174,6 +184,11 @@ public class TurretController : MonoBehaviour
     public void OpenUIPanel()
     {
         uiPanel.SetActive(true);
+        typeText.text="Type : " + turretType.ToString();
+
+        rateOfFireText.text = "Rate Of Fire : " + currentRateOfFire.ToString(); ; 
+        targetingRadiusText.text = "Targeting Radius : " + currentTargetingRadius.ToString(); ;
+        upgradeButtonText.text = "Upgrade for " + currentUpgradeCost.ToString(); ;
     }
 
     public void CloseUIPanel()
