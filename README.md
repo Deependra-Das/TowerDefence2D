@@ -39,4 +39,4 @@
  - Pause Menu, Game Over Menu, Win Screen, Main Lobby Screen
 
 # Gameplay Video
- - Will be added soon
+ - [Link to Loom Video](https://www.loom.com/share/9bb2841725a340ae9318a4264a0576d8)
