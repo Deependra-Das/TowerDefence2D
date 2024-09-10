@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &539152517929400598
 Transform:
   m_ObjectHideFlags: 0
@@ -239,6 +239,9 @@ MonoBehaviour:
   rateOfFireText: {fileID: 7386039584661865734}
   targetingRadiusText: {fileID: 3197667206402839107}
   upgradeButtonText: {fileID: 7151529157245731382}
+  turretBarrel_lvl_1: {fileID: 539152517929400599}
+  turretBarrel_lvl_2: {fileID: 6342120904567395633}
+  turretBarrel_lvl_3: {fileID: 6831776065803567210}
 --- !u!1 &4973689453867877641
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8065600229698590802
 Transform:
   m_ObjectHideFlags: 0

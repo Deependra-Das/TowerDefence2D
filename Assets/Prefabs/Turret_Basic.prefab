@@ -239,6 +239,9 @@ MonoBehaviour:
   rateOfFireText: {fileID: 2179885691284810571}
   targetingRadiusText: {fileID: 6098046260026866702}
   upgradeButtonText: {fileID: 2017520561063292027}
+  turretBarrel_lvl_1: {fileID: 539152517929400599}
+  turretBarrel_lvl_2: {fileID: 2123999307773184088}
+  turretBarrel_lvl_3: {fileID: 5257162210995028115}
 --- !u!1 &2123999307773184088
 GameObject:
   m_ObjectHideFlags: 0
