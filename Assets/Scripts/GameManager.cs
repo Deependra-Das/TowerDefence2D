@@ -7,10 +7,24 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance { get { return instance; } }
 
+    [SerializeField]
+    private GameUIManager gameUIManagerObj;
+
     public Transform startPoint;
     public Transform[] path;
 
     public int currency;
+
+    [SerializeField]
+    private int playerHealth;
+
+    [SerializeField]
+    private int MaxHealth;
+
+    [SerializeField]
+    private int initialCurrency;
+
+    public bool isGameOver;
 
     private void Awake()
     {
@@ -27,7 +41,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 100;
+        currency = initialCurrency;
+        playerHealth = MaxHealth;
+        gameUIManagerObj.setMaxHealth(MaxHealth);
+        isGameOver = false;
     }
 
     public void AddCurrency(int amount)
@@ -46,6 +63,19 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Insufficient Funds");
             return false;
+        }
+    }
+
+    public void DecreaseHealth(int amount)
+    {
+        playerHealth-=amount;
+        gameUIManagerObj.setHealth(playerHealth);
+
+        if (playerHealth<=0)
+        {
+            playerHealth = 0;
+            isGameOver = true;
+            Debug.Log("Game Over");
         }
     }
 }

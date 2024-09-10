@@ -18,11 +18,26 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private Button freezeTurretButton;
 
+    [SerializeField]
+    private Slider slider;
+
+
     private void Awake()
     {
         basicTurretButton.onClick.AddListener(OnBasicButtonSelected);
         heavyTurretButton.onClick.AddListener(OnHeavyButtonSelected);
         freezeTurretButton.onClick.AddListener(OnFreezeButtonSelected);
+    }
+
+    public void setMaxHealth(int healthValue)
+    {
+        slider.maxValue = healthValue;
+        slider.value = healthValue;
+    }
+
+    public void setHealth(int healthValue)
+    {
+        slider.value = healthValue;
     }
 
     private void OnGUI()
