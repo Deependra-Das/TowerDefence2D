@@ -74,6 +74,15 @@ public class TurretController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI upgradeButtonText;
 
+    [SerializeField]
+    private GameObject turretBarrel_lvl_1;
+
+    [SerializeField]
+    private GameObject turretBarrel_lvl_2;
+
+    [SerializeField]
+    private GameObject turretBarrel_lvl_3;
+
     private void Start()
     {
         currentRateOfFire = rateOfFire;
@@ -234,6 +243,8 @@ public class TurretController : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioTypeList.turretUpgrade);
         rateOfFire =rateOfFire/2;
         currentRateOfFire = rateOfFire;
+        turretBarrel_lvl_1.SetActive(false);
+        turretBarrel_lvl_2.SetActive(true);
     }
 
     private void UpgradeTurretLevel2()
@@ -246,6 +257,9 @@ public class TurretController : MonoBehaviour
         {
             freezeDuration = freezeDuration * 2;
         }
+
+        turretBarrel_lvl_2.SetActive(false);
+        turretBarrel_lvl_3.SetActive(true);
     }
 
     public void RemoveTurret()

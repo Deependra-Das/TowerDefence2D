@@ -30,6 +30,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerText;
 
+    [SerializeField]
+    private Image[] buttonContainerList;
+
     private float remainingTime;
 
     private void Awake()
@@ -76,16 +79,19 @@ public class GameUIManager : MonoBehaviour
     private void OnBasicButtonSelected()
     {
         TowerManager.Instance.SetSelectedTower(TowerTypes.BASIC);
+        SetTurretToPlace(TowerTypes.BASIC);
     }
 
     private void OnHeavyButtonSelected()
     {
         TowerManager.Instance.SetSelectedTower(TowerTypes.HEAVY);
+        SetTurretToPlace(TowerTypes.HEAVY);
     }
 
     private void OnFreezeButtonSelected()
     {
         TowerManager.Instance.SetSelectedTower(TowerTypes.FREEZE);
+        SetTurretToPlace(TowerTypes.FREEZE);
     }
 
     public void SetWaveText(string textValue)
@@ -108,5 +114,31 @@ public class GameUIManager : MonoBehaviour
     public void HideTimerText()
     {
         timerText.enabled = false;
+    }
+
+    public void SetTurretToPlace(TowerTypes type)
+    {
+        setAllButtonToDefaultState();
+
+        switch(type)
+        {
+            case TowerTypes.BASIC:
+                buttonContainerList[0].color = Color.black;
+                break;
+            case TowerTypes.HEAVY:
+                buttonContainerList[1].color = Color.black;
+                break;
+            case TowerTypes.FREEZE:
+                buttonContainerList[2].color = Color.black;
+                break;
+        }
+    }
+
+    private void setAllButtonToDefaultState()
+    {
+        foreach (Image turbutcon in buttonContainerList)
+        {
+            turbutcon.color = Color.white;
+        }
     }
 }

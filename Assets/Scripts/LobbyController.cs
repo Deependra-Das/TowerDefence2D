@@ -29,6 +29,7 @@ public class LobbyController : MonoBehaviour
     private void OnStartGameButtonClick()
     {
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
         enemySpawnManagerObj.DestroyAllEnemiesOnScreen();

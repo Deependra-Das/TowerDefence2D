@@ -28,6 +28,7 @@ public class GameOverController : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
         AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
+        Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
         enemySpawnManagerObj.DestroyAllEnemiesOnScreen();
