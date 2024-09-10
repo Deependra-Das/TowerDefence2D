@@ -141,6 +141,7 @@ public class TurretController : MonoBehaviour
         {
             timeUntilFire += Time.deltaTime;
 
+            turretRotationPoint.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
             if (timeUntilFire >= 1f / currentRateOfFire)
             {
                 FreezeEnemiesinRadius();

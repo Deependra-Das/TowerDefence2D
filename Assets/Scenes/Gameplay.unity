@@ -3928,7 +3928,7 @@ MonoBehaviour:
   audioSourceTurret: {fileID: 1967190430}
   AudioList:
   - audioType: 0
-    audioClip: {fileID: 8300000, guid: 8d422882d825e8f4da02b67d68bd8771, type: 3}
+    audioClip: {fileID: 8300000, guid: 6a9cd7c0f6666824498e9e3072438e2c, type: 3}
   - audioType: 1
     audioClip: {fileID: 8300000, guid: 0aca313424cdedb40b87b9054cedb25f, type: 3}
   - audioType: 2
@@ -12207,7 +12207,7 @@ MonoBehaviour:
   currency: 0
   playerHealth: 100
   MaxHealth: 100
-  initialCurrency: 100
+  initialCurrency: 1000
   isGameOver: 0
 --- !u!114 &1303887755
 MonoBehaviour:

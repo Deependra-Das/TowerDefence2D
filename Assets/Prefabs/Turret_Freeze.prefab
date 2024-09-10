@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretType: 2
   targetingRadius: 2
-  rotationSpeed: 1000
+  rotationSpeed: 100
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
