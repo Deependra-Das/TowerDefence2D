@@ -30,7 +30,7 @@ public class EnemySpawnManager : MonoBehaviour
     private GameObject[] enemyPrefabs;
 
     [SerializeField]
-    private EnemyWaveSystem[] enemyWavesList;
+    private EnemyWaveSystem[] enemyWaves;
 
     private void Awake()
     {
@@ -89,7 +89,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastEnemySpawned = 0f;
-        if(currentWave< enemyWavesList.Length-1 && GameManager.Instance.isGameOver==false)
+        if(currentWave< enemyWaves.Length-1 && GameManager.Instance.isGameOver==false)
         {
             currentWave++;
             StartCoroutine(StartWave());
@@ -128,7 +128,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     private EnemyWaveSystem getEnemyWaveSystem(int waveIndex)
     {
-        EnemyWaveSystem waveItem = Array.Find(enemyWavesList, item => item.enemyWaveIndex == waveIndex);
+        EnemyWaveSystem waveItem = Array.Find(enemyWaves, item => item.enemyWaveIndex == waveIndex);
         if (waveItem != null)
         {
             return waveItem;
