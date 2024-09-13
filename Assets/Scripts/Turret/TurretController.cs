@@ -8,7 +8,7 @@ public class TurretController : MonoBehaviour
 {
 
     [SerializeField]
-    private TowerTypes turretType;
+    private TowerConfig.TowerTypes turretType;
 
     [SerializeField]
     private float targetingRadius = 3f;
@@ -112,7 +112,7 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        if(turretType != TowerTypes.FREEZE)
+        if(turretType != TowerConfig.TowerTypes.FREEZE)
         {
             if (target == null)
             {
@@ -178,13 +178,13 @@ public class TurretController : MonoBehaviour
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         BulletController bulletController = bulletObj.GetComponent<BulletController>();
-        if(turretType==TowerTypes.BASIC)
+        if(turretType== TowerConfig.TowerTypes.BASIC)
         {
-            AudioManager.Instance.PlayTurretSFX(AudioTypeList.bulletShot);
+            AudioManager.Instance.PlayTurretSFX(AudioConfig.AudioNames.bulletShot);
         }
-        else if (turretType == TowerTypes.HEAVY)
+        else if (turretType == TowerConfig.TowerTypes.HEAVY)
         {
-            AudioManager.Instance.PlayTurretSFX(AudioTypeList.missileShot);
+            AudioManager.Instance.PlayTurretSFX(AudioConfig.AudioNames.missileShot);
         }
 
         bulletController.SetTarget(target);
@@ -193,7 +193,7 @@ public class TurretController : MonoBehaviour
     private void FreezeEnemiesinRadius()
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, currentTargetingRadius, (Vector2)transform.position, 0f, enemyMask);
-        AudioManager.Instance.PlayTurretSFX(AudioTypeList.freezeShot);
+        AudioManager.Instance.PlayTurretSFX(AudioConfig.AudioNames.freezeShot);
 
         if (hits.Length > 0)
         {
@@ -236,11 +236,11 @@ public class TurretController : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if(currentUpgradeCost>GameManager.Instance.currency)
+        if(currentUpgradeCost> CurrencyManager.Instance.currency)
         {
             return;
         }
-        GameManager.Instance.SpendCurrency(currentUpgradeCost);
+        CurrencyManager.Instance.SpendCurrency(currentUpgradeCost);
         upgradeLevel++;
         currentUpgradeCost = upgradeCost_Lvl2;
         switch(upgradeLevel)
@@ -258,7 +258,7 @@ public class TurretController : MonoBehaviour
 
     private void UpgradeTurretLevel1()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.turretUpgrade);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretUpgrade);
         rateOfFire =rateOfFire/2;
         currentRateOfFire = rateOfFire;
         turretBarrel_lvl_1.SetActive(false);
@@ -270,11 +270,11 @@ public class TurretController : MonoBehaviour
 
     private void UpgradeTurretLevel2()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.turretUpgrade);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretUpgrade);
         targetingRadius += 1;
         currentTargetingRadius = targetingRadius;
 
-        if(turretType==TowerTypes.FREEZE)
+        if(turretType== TowerConfig.TowerTypes.FREEZE)
         {
             freezeDuration = freezeDuration * 2;
         }
@@ -288,9 +288,9 @@ public class TurretController : MonoBehaviour
 
     public void RemoveTurret()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.turretRemove);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretRemove);
 
-        GameManager.Instance.AddCurrency(currentSellValue / 2);
+        CurrencyManager.Instance.AddCurrency(currentSellValue);
 
         UIManager.Instance.SetHoveringState(false);
         Destroy(gameObject);

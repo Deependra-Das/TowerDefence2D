@@ -36,10 +36,21 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if(Vector2.Distance(destination.position, transform.position)<=0.1f)
+        FindPath();
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        MovementAnimation();
+    }
+
+    private void FindPath()
+    {
+        if (Vector2.Distance(destination.position, transform.position) <= 0.1f)
         {
             pathIndex++;
-           
+
             if (pathIndex >= GameManager.Instance.path.Length)
             {
                 EnemySpawnManager.onEnemyDestroy.Invoke();
@@ -54,44 +65,41 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Move()
     {
         Vector2 direction = (destination.position - transform.position).normalized;
-        rb2D_Enemy.velocity= direction * currentSpeed;
+        rb2D_Enemy.velocity = direction * currentSpeed;
+    }
 
-        if((int)rb2D_Enemy.velocity.x>0 && (int)rb2D_Enemy.velocity.y==0)
+    private void MovementAnimation()
+    {
+        if ((int)rb2D_Enemy.velocity.x > 0 && (int)rb2D_Enemy.velocity.y == 0)
         {
-            enemyAnimator.SetBool("Right", true);
-            enemyAnimator.SetBool("Left", false);
-            enemyAnimator.SetBool("Top", false);
-            enemyAnimator.SetBool("Bottom", false);
+            SetDirectionForAnimation(true,false,false, false);
         }
 
         else if ((int)rb2D_Enemy.velocity.x < 0 && (int)rb2D_Enemy.velocity.y == 0)
         {
-            enemyAnimator.SetBool("Right", false);
-            enemyAnimator.SetBool("Left", true);
-            enemyAnimator.SetBool("Top", false);
-            enemyAnimator.SetBool("Bottom", false);
+            SetDirectionForAnimation(false, true, false, false);
         }
 
         else if ((int)rb2D_Enemy.velocity.x == 0 && (int)rb2D_Enemy.velocity.y > 0)
         {
-            enemyAnimator.SetBool("Right", false);
-            enemyAnimator.SetBool("Left", false);
-            enemyAnimator.SetBool("Top", true);
-            enemyAnimator.SetBool("Bottom", false);
+            SetDirectionForAnimation(false, false, true, false);
         }
 
         else if ((int)rb2D_Enemy.velocity.x == 0 && (int)rb2D_Enemy.velocity.y < 0)
         {
-            enemyAnimator.SetBool("Right", false);
-            enemyAnimator.SetBool("Left", false);
-            enemyAnimator.SetBool("Top", false);
-            enemyAnimator.SetBool("Bottom", true);
+            SetDirectionForAnimation(false, false, false, true);
         }
+    }
 
-
+    private void SetDirectionForAnimation(bool right, bool left, bool top, bool bottom)
+    {
+        enemyAnimator.SetBool("Right", right);
+        enemyAnimator.SetBool("Left", left);
+        enemyAnimator.SetBool("Top", top);
+        enemyAnimator.SetBool("Bottom", bottom);
     }
 
     public void TakeDamge(int damageValue)
@@ -101,8 +109,8 @@ public class EnemyController : MonoBehaviour
         if(enemyHealth<=0 && !isDead)
         {
             EnemySpawnManager.onEnemyDestroy.Invoke();
-            AudioManager.Instance.PlayEnemySFX(AudioTypeList.enemyDeath);
-            GameManager.Instance.AddCurrency(currencyDrop);
+            AudioManager.Instance.PlayEnemySFX(AudioConfig.AudioNames.enemyDeath);
+            CurrencyManager.Instance.AddCurrency(currencyDrop);
             isDead = true;
             Destroy(gameObject);
         }

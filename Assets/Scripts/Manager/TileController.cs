@@ -57,13 +57,13 @@ public class TileController : MonoBehaviour
             Debug.Log("Select a Tower to Build.");
             return;
         }
-        if(newTowerBuild.buildCost > GameManager.Instance.currency)
+        if(newTowerBuild.buildCost > CurrencyManager.Instance.currency)
         {
             Debug.Log("Insufficient Funds. Earn More Currency.");
             return;
         }
-        GameManager.Instance.SpendCurrency(newTowerBuild.buildCost);
-        AudioManager.Instance.PlaySFX(AudioTypeList.turretPlaced);
+        CurrencyManager.Instance.SpendCurrency(newTowerBuild.buildCost);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretPlaced);
         towerObj =Instantiate(newTowerBuild.towerPrefab, transform.position, Quaternion.identity);
         TowerManager.Instance.AddTurretToList(towerObj);
         turretControllerObj = towerObj.GetComponent<TurretController>();

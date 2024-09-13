@@ -72,29 +72,29 @@ public class GameUIManager : MonoBehaviour
 
     private void OnGUI()
     {
-        currencyText.text=GameManager.Instance.currency.ToString();
+        currencyText.text=CurrencyManager.Instance.currency.ToString();
     }
 
 
     private void OnBasicButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
-        TowerManager.Instance.SetSelectedTower(TowerTypes.BASIC);
-        SetTurretToPlace(TowerTypes.BASIC);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
+        TowerManager.Instance.SetSelectedTower(TowerConfig.TowerTypes.BASIC);
+        SetTurretToPlace(TowerConfig.TowerTypes.BASIC);
     }
 
     private void OnHeavyButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
-        TowerManager.Instance.SetSelectedTower(TowerTypes.HEAVY);
-        SetTurretToPlace(TowerTypes.HEAVY);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
+        TowerManager.Instance.SetSelectedTower(TowerConfig.TowerTypes.HEAVY);
+        SetTurretToPlace(TowerConfig.TowerTypes.HEAVY);
     }
 
     private void OnFreezeButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
-        TowerManager.Instance.SetSelectedTower(TowerTypes.FREEZE);
-        SetTurretToPlace(TowerTypes.FREEZE);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
+        TowerManager.Instance.SetSelectedTower(TowerConfig.TowerTypes.FREEZE);
+        SetTurretToPlace(TowerConfig.TowerTypes.FREEZE);
     }
 
     public void SetWaveText(string textValue)
@@ -119,19 +119,19 @@ public class GameUIManager : MonoBehaviour
         timerText.enabled = false;
     }
 
-    public void SetTurretToPlace(TowerTypes type)
+    public void SetTurretToPlace(TowerConfig.TowerTypes type)
     {
         setAllButtonToDefaultState();
 
         switch(type)
         {
-            case TowerTypes.BASIC:
+            case TowerConfig.TowerTypes.BASIC:
                 buttonContainerList[0].color = Color.black;
                 break;
-            case TowerTypes.HEAVY:
+            case TowerConfig.TowerTypes.HEAVY:
                 buttonContainerList[1].color = Color.black;
                 break;
-            case TowerTypes.FREEZE:
+            case TowerConfig.TowerTypes.FREEZE:
                 buttonContainerList[2].color = Color.black;
                 break;
         }

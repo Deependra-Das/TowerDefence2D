@@ -22,7 +22,7 @@ public class EnemySpawnManager : MonoBehaviour
     private int enemiesLeftToSpawn;
     private bool isSpawning =false;
     private int spawnCounter=0;
-    private EnemyType[] enemySpawnOrder;
+    private EnemyConfig.EnemyType[] enemySpawnOrder;
 
     private List<Transform> enemies;
 
@@ -30,7 +30,7 @@ public class EnemySpawnManager : MonoBehaviour
     private GameObject[] enemyPrefabs;
 
     [SerializeField]
-    private EnemyWaveSystem[] enemyWavesList;
+    private EnemyWaveSystem[] enemyWaves;
 
     private void Awake()
     {
@@ -51,7 +51,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         timeSinceLastEnemySpawned += Time.deltaTime;
 
-        if(timeSinceLastEnemySpawned>=(1f/ getEnemyWaveSystem((EnemyWaveIndex)currentWave).enemyFrequency) && enemiesLeftToSpawn >0)
+        if(timeSinceLastEnemySpawned>=(1f/ getEnemyWaveSystem(currentWave).enemyFrequency) && enemiesLeftToSpawn >0)
         {
             SpawnEnemy();
             enemiesLeftToSpawn--;
@@ -78,9 +78,9 @@ public class EnemySpawnManager : MonoBehaviour
         gameUIManagerObj.ShowTimerText(coolDownBetweenWaves);
         yield return new WaitForSeconds(coolDownBetweenWaves);
         isSpawning = true;
-        enemiesLeftToSpawn = getEnemyWaveSystem((EnemyWaveIndex)currentWave).numberOfEnemies;
+        enemiesLeftToSpawn = getEnemyWaveSystem((int)currentWave).numberOfEnemies;
         spawnCounter = 0;
-        enemySpawnOrder= getEnemyWaveSystem((EnemyWaveIndex)currentWave).enemySpawnOrder;
+        enemySpawnOrder= getEnemyWaveSystem((int)currentWave).enemySpawnOrder;
         gameUIManagerObj.SetLabelText("ONGOING");
         gameUIManagerObj.HideTimerText();
     }
@@ -89,7 +89,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastEnemySpawned = 0f;
-        if(currentWave< enemyWavesList.Length-1 && GameManager.Instance.isGameOver==false)
+        if(currentWave< enemyWaves.Length-1 && GameManager.Instance.isGameOver==false)
         {
             currentWave++;
             StartCoroutine(StartWave());
@@ -103,34 +103,32 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject prefabToSpawn;
+        GameObject prefabToSpawn=null;
         GameObject newEnemy;
 
         switch (enemySpawnOrder[spawnCounter])
         {
-            case EnemyType.SMALL:
+            case EnemyConfig.EnemyType.SMALL:
                 prefabToSpawn = enemyPrefabs[0];
-                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
-                enemies.Add(newEnemy.transform);
                 break;
-            case EnemyType.MEDIUM:
+            case EnemyConfig.EnemyType.MEDIUM:
                 prefabToSpawn = enemyPrefabs[1];
-                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
-                enemies.Add(newEnemy.transform);
                 break;
-            case EnemyType.TANK:
+            case EnemyConfig.EnemyType.TANK:
                 prefabToSpawn = enemyPrefabs[2];
-                newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
-                enemies.Add(newEnemy.transform);
                 break;
         }
-  
-           spawnCounter++;
+        if (prefabToSpawn != null)
+        {
+            newEnemy = Instantiate(prefabToSpawn, GameManager.Instance.startPoint.position, Quaternion.identity);
+            enemies.Add(newEnemy.transform);
+            spawnCounter++;
+        }
     }
 
-    private EnemyWaveSystem getEnemyWaveSystem(EnemyWaveIndex waveIndex)
+    private EnemyWaveSystem getEnemyWaveSystem(int waveIndex)
     {
-        EnemyWaveSystem waveItem = Array.Find(enemyWavesList, item => item.enemyWaveIndex == waveIndex);
+        EnemyWaveSystem waveItem = Array.Find(enemyWaves, item => item.enemyWaveIndex == waveIndex);
         if (waveItem != null)
         {
             return waveItem;
@@ -156,29 +154,4 @@ public class EnemySpawnManager : MonoBehaviour
     }
 
 
-}
-
-public enum EnemyWaveIndex
-{
-    Wave1,
-    Wave2,
-    Wave3,
-    Wave4,
-    Wave5,
-}
-
-[Serializable]
-public class EnemyWaveSystem
-{
-    public EnemyWaveIndex enemyWaveIndex;
-    public int numberOfEnemies = 3;
-    public float enemyFrequency = 0.5f;
-    public EnemyType[] enemySpawnOrder;
-}
-
-public enum EnemyType
-{
-    SMALL,
-    MEDIUM,
-    TANK,
 }

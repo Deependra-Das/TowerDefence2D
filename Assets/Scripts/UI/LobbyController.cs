@@ -22,13 +22,13 @@ public class LobbyController : MonoBehaviour
     {
         StartGameButton.onClick.AddListener(OnStartGameButtonClick);
         QuitGameButton.onClick.AddListener(OnQuitGameButtonClick);
-        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
-        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
+        AudioManager.Instance.MuteAudioSource(AudioConfig.AudioSourceList.audioSourceBGM, false);
+        AudioManager.Instance.PlayBGM(AudioConfig.AudioNames.backgroundMusic);
     }
 
     private void OnStartGameButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
@@ -39,7 +39,7 @@ public class LobbyController : MonoBehaviour
 
     private void OnQuitGameButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         Application.Quit();
     }
 
