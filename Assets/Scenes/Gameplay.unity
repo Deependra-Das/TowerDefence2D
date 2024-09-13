@@ -10828,7 +10828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb39207d1d919d419824ae8dab5de00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnManagerObj: {fileID: 1417127874}
   lobbyControllerObj: {fileID: 1488694624}
   RestartGameButton: {fileID: 129763519}
   BackButton: {fileID: 911969824}
@@ -13890,6 +13889,9 @@ MonoBehaviour:
     numberOfEnemies: 30
     enemyFrequency: 5
     enemySpawnOrder: 020000000100000000000000000000000200000000000000000000000100000002000000020000000000000000000000010000000100000002000000020000000100000001000000000000000000000002000000020000000100000000000000000000000200000000000000000000000100000002000000
+  onEnemyDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1418924901
 GameObject:
   m_ObjectHideFlags: 0
@@ -15101,7 +15103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463391eace8746f49a7f63b4a32a76bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnManagerObj: {fileID: 1417127874}
   tileControllerObj: {fileID: 0}
   StartGameButton: {fileID: 1479985426}
   QuitGameButton: {fileID: 1296421719}
@@ -18374,6 +18375,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7118219312505124768, guid: bdf3a32f33acf5446abc764bd2594bc6, type: 3}
   m_PrefabInstance: {fileID: 1868894606}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868894608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7118219312505124769, guid: bdf3a32f33acf5446abc764bd2594bc6, type: 3}
+  m_PrefabInstance: {fileID: 1868894606}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1882231601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19844,9 +19856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c418315e5d39a084db13dd99fcbd7e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnManagerObj: {fileID: 1417127874}
   lobbyControllerObj: {fileID: 1488694624}
-  RestartGameButton: {fileID: 0}
+  RestartGameButton: {fileID: 1868894608}
   BackButton: {fileID: 1868872521}
 --- !u!1001 &2041871324
 PrefabInstance:

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField]
-    private EnemySpawnManager enemySpawnManagerObj;
-
-    [SerializeField]
     private LobbyController lobbyControllerObj;
 
     [SerializeField]
@@ -31,9 +28,9 @@ public class GameOverController : MonoBehaviour
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
-        enemySpawnManagerObj.DestroyAllEnemiesOnScreen();
+        EnemySpawnManager.Instance.DestroyAllEnemiesOnScreen();
         TowerManager.Instance.DestroyAllTurretsOnScreen();
-        enemySpawnManagerObj.StartSpawner();
+        EnemySpawnManager.Instance.StartSpawner();
     }
 
     private void OnBackButtonClick()

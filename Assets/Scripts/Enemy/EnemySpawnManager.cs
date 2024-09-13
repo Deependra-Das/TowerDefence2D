@@ -14,8 +14,6 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private float coolDownBetweenWaves = 5.0f;
 
-    public static UnityEvent onEnemyDestroy = new UnityEvent();
-
     private int currentWave = 0;
     private float timeSinceLastEnemySpawned;
     private int enemiesAlive;
@@ -32,8 +30,23 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private EnemyWaveSystem[] enemyWaves;
 
+    private static EnemySpawnManager instance;
+    public static EnemySpawnManager Instance { get { return instance; } }
+
+    public UnityEvent onEnemyDestroy = new UnityEvent();
+
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         onEnemyDestroy.AddListener(EnemyDestroyed);
         enemies = new List<Transform>();
     }

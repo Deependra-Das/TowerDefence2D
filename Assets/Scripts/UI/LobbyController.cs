@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LobbyController : MonoBehaviour
 {
-
-    [SerializeField]
-    private EnemySpawnManager enemySpawnManagerObj;
-
     [SerializeField]
     private TileController tileControllerObj;
 
@@ -32,9 +28,9 @@ public class LobbyController : MonoBehaviour
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
-        enemySpawnManagerObj.DestroyAllEnemiesOnScreen();
+        EnemySpawnManager.Instance.DestroyAllEnemiesOnScreen();
         TowerManager.Instance.DestroyAllTurretsOnScreen();
-        enemySpawnManagerObj.StartSpawner();
+        EnemySpawnManager.Instance.StartSpawner();
     }
 
     private void OnQuitGameButtonClick()

@@ -53,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
             if (pathIndex >= GameManager.Instance.path.Length)
             {
-                EnemySpawnManager.onEnemyDestroy.Invoke();
+                EnemySpawnManager.Instance.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
             }
@@ -108,7 +108,7 @@ public class EnemyController : MonoBehaviour
 
         if(enemyHealth<=0 && !isDead)
         {
-            EnemySpawnManager.onEnemyDestroy.Invoke();
+            EnemySpawnManager.Instance.onEnemyDestroy.Invoke();
             AudioManager.Instance.PlayEnemySFX(AudioConfig.AudioNames.enemyDeath);
             CurrencyManager.Instance.AddCurrency(currencyDrop);
             isDead = true;
