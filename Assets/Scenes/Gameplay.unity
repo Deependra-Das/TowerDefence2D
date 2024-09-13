@@ -4010,28 +4010,28 @@ MonoBehaviour:
   audioSourceBGM: {fileID: 1404705300}
   audioSourceEnemy: {fileID: 1008003181}
   audioSourceTurret: {fileID: 1967190430}
-  AudioList:
-  - audioType: 0
+  AudioTypes:
+  - audioName: 0
     audioClip: {fileID: 8300000, guid: 6a9cd7c0f6666824498e9e3072438e2c, type: 3}
-  - audioType: 1
+  - audioName: 1
     audioClip: {fileID: 8300000, guid: 0aca313424cdedb40b87b9054cedb25f, type: 3}
-  - audioType: 2
+  - audioName: 2
     audioClip: {fileID: 8300000, guid: 404a7ca86d411814db83d841002adda8, type: 3}
-  - audioType: 3
+  - audioName: 3
     audioClip: {fileID: 8300000, guid: fbe82853c57853441b6e5e8736a2cc57, type: 3}
-  - audioType: 4
+  - audioName: 4
     audioClip: {fileID: 8300000, guid: d83da538fec0c6c4dbbb93098761e8a4, type: 3}
-  - audioType: 5
+  - audioName: 5
     audioClip: {fileID: 8300000, guid: 7ddf441f7dd78c344823a490e05eafb2, type: 3}
-  - audioType: 6
+  - audioName: 6
     audioClip: {fileID: 8300000, guid: 44b6a99550dd3fb44900c02ae88ffd96, type: 3}
-  - audioType: 7
+  - audioName: 7
     audioClip: {fileID: 8300000, guid: 6156ec1692b1d184ca99210fdf45cad8, type: 3}
-  - audioType: 8
+  - audioName: 8
     audioClip: {fileID: 8300000, guid: 8cac58cbc2e6463429f1688c9cdd859d, type: 3}
-  - audioType: 9
+  - audioName: 9
     audioClip: {fileID: 8300000, guid: 2a66b157dc51ab84ca5e098b5ca30461, type: 3}
-  - audioType: 10
+  - audioName: 10
     audioClip: {fileID: 8300000, guid: 35f8c714a34733e43b69ec2e6adb1743, type: 3}
 --- !u!1001 &393669670
 PrefabInstance:

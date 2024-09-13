@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSourceEnemy;
     public AudioSource audioSourceTurret;
 
-    public AudioType[] AudioList;
+    public AudioType[] AudioTypes;
 
     private void Awake()
     {
@@ -28,45 +28,45 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void MuteAudioSource(AudioSourceList sourceName, bool value)
+    public void MuteAudioSource(AudioConfig.AudioSourceList sourceName, bool value)
     {
         switch (sourceName)
         {
-            case AudioSourceList.audioSourceSFX:
+            case AudioConfig.AudioSourceList.audioSourceSFX:
                 audioSourceSFX.mute = value;
                 break;
 
-            case AudioSourceList.audioSourceBGM:
+            case AudioConfig.AudioSourceList.audioSourceBGM:
                 audioSourceBGM.mute = value;
                 break;
 
-            case AudioSourceList.audioSourceEnemy:
+            case AudioConfig.AudioSourceList.audioSourceEnemy:
                 audioSourceEnemy.mute = value;
                 break;
 
-            case AudioSourceList.audioSourceTurret:
+            case AudioConfig.AudioSourceList.audioSourceTurret:
                 audioSourceTurret.mute = value;
                 break;
 
         }
     }
 
-    public void PlaySFX(AudioTypeList audio)
+    public void PlaySFX(AudioConfig.AudioNames audioName)
     {
-        AudioClip clip = GetAudioClip(audio);
+        AudioClip clip = GetAudioClip(audioName);
         if (clip != null)
         {
             audioSourceSFX.PlayOneShot(clip);
         }
         else
         {
-            Debug.LogError("Audio Clip not found for " + audio);
+            Debug.LogError("Audio Clip not found for " + audioName);
         }
     }
 
-    public void PlayBGM(AudioTypeList audio)
+    public void PlayBGM(AudioConfig.AudioNames audioName)
     {
-        AudioClip clip = GetAudioClip(audio);
+        AudioClip clip = GetAudioClip(audioName);
         if (clip != null)
         {
             audioSourceBGM.clip = clip;
@@ -74,75 +74,44 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Audio Clip not found for " + audio);
+            Debug.LogError("Audio Clip not found for " + audioName);
         }
     }
 
-    public void PlayEnemySFX(AudioTypeList audio)
+    public void PlayEnemySFX(AudioConfig.AudioNames audioName)
     {
-        AudioClip clip = GetAudioClip(audio);
+        AudioClip clip = GetAudioClip(audioName);
         if (clip != null)
         {
             audioSourceEnemy.PlayOneShot(clip);
         }
         else
         {
-            Debug.LogError("Audio Clip not found for " + audio);
+            Debug.LogError("Audio Clip not found for " + audioName);
         }
     }
 
-    public void PlayTurretSFX(AudioTypeList audio)
+    public void PlayTurretSFX(AudioConfig.AudioNames audioName)
     {
-        AudioClip clip = GetAudioClip(audio);
+        AudioClip clip = GetAudioClip(audioName);
         if (clip != null)
         {
             audioSourceTurret.PlayOneShot(clip);
         }
         else
         {
-            Debug.LogError("Audio Clip not found for " + audio);
+            Debug.LogError("Audio Clip not found for " + audioName);
         }
     }
 
-    public AudioClip GetAudioClip(AudioTypeList audio)
+    public AudioClip GetAudioClip(AudioConfig.AudioNames audio_name)
     {
-        AudioType audioItem = Array.Find(AudioList, item => item.audioType == audio);
+        AudioType audioItem = Array.Find(AudioTypes, item => item.audioName == audio_name);
         if (audioItem != null)
         {
             return audioItem.audioClip;
         }
         return null;
     }
-
-}
-
-public enum AudioTypeList
-{
-    backgroundMusic,
-    buttonMenuClick,
-    bulletShot,
-    missileShot,
-    freezeShot,
-    turretPlaced,
-    turretUpgrade,
-    turretRemove,
-    enemyDeath,
-    playerHurt,
-    gameOver
-}
-
-[Serializable]
-public class AudioType
-{
-    public AudioTypeList audioType;
-    public AudioClip audioClip;
-}
-
-public enum AudioSourceList
-{
-    audioSourceSFX,
-    audioSourceBGM,
-    audioSourceEnemy,
-    audioSourceTurret,
 
 }

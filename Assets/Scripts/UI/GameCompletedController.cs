@@ -25,9 +25,9 @@ public class GameCompletedController : MonoBehaviour
 
     private void OnRestartGameButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
-        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
-        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
+        AudioManager.Instance.MuteAudioSource(AudioConfig.AudioSourceList.audioSourceBGM, false);
+        AudioManager.Instance.PlayBGM(AudioConfig.AudioNames.backgroundMusic);
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
         GameManager.Instance.ResetGameManager();
@@ -38,7 +38,7 @@ public class GameCompletedController : MonoBehaviour
 
     private void OnBackButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         this.gameObject.SetActive(false);
 
         lobbyControllerObj.gameObject.SetActive(true);

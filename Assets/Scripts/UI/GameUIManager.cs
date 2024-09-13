@@ -78,21 +78,21 @@ public class GameUIManager : MonoBehaviour
 
     private void OnBasicButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         TowerManager.Instance.SetSelectedTower(TowerTypes.BASIC);
         SetTurretToPlace(TowerTypes.BASIC);
     }
 
     private void OnHeavyButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         TowerManager.Instance.SetSelectedTower(TowerTypes.HEAVY);
         SetTurretToPlace(TowerTypes.HEAVY);
     }
 
     private void OnFreezeButtonSelected()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         TowerManager.Instance.SetSelectedTower(TowerTypes.FREEZE);
         SetTurretToPlace(TowerTypes.FREEZE);
     }

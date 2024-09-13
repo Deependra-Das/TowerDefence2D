@@ -23,7 +23,7 @@ public class GamePauseController : MonoBehaviour
 
     private void OnResumeGameButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         UIManager.Instance.SetHoveringState(false);
         Time.timeScale = 1f;
         this.gameObject.SetActive(false);
@@ -31,7 +31,7 @@ public class GamePauseController : MonoBehaviour
 
     private void OnBackButtonClick()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.buttonMenuClick);
         this.gameObject.SetActive(false);
 
         lobbyControllerObj.gameObject.SetActive(true);

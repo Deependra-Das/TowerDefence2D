@@ -8,7 +8,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         if( other.gameObject.GetComponent<EnemyController>())
         {
-            AudioManager.Instance.PlaySFX(AudioTypeList.playerHurt);
+            AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.playerHurt);
             GameManager.Instance.DecreaseHealth(10);
         }
 
