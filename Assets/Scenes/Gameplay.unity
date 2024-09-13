@@ -4339,7 +4339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c00157fe6974445bf57c7785b319a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerList:
+  towers:
   - towerType: 0
     towerPrefab: {fileID: 539152518175691420, guid: 8959f48530db2ee4d903db5390486701, type: 3}
     buildCost: 50

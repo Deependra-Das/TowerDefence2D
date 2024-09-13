@@ -8,7 +8,7 @@ public class TurretController : MonoBehaviour
 {
 
     [SerializeField]
-    private TowerTypes turretType;
+    private TowerConfig.TowerTypes turretType;
 
     [SerializeField]
     private float targetingRadius = 3f;
@@ -112,7 +112,7 @@ public class TurretController : MonoBehaviour
 
     private void Update()
     {
-        if(turretType != TowerTypes.FREEZE)
+        if(turretType != TowerConfig.TowerTypes.FREEZE)
         {
             if (target == null)
             {
@@ -178,11 +178,11 @@ public class TurretController : MonoBehaviour
     {
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         BulletController bulletController = bulletObj.GetComponent<BulletController>();
-        if(turretType==TowerTypes.BASIC)
+        if(turretType== TowerConfig.TowerTypes.BASIC)
         {
             AudioManager.Instance.PlayTurretSFX(AudioConfig.AudioNames.bulletShot);
         }
-        else if (turretType == TowerTypes.HEAVY)
+        else if (turretType == TowerConfig.TowerTypes.HEAVY)
         {
             AudioManager.Instance.PlayTurretSFX(AudioConfig.AudioNames.missileShot);
         }
@@ -274,7 +274,7 @@ public class TurretController : MonoBehaviour
         targetingRadius += 1;
         currentTargetingRadius = targetingRadius;
 
-        if(turretType==TowerTypes.FREEZE)
+        if(turretType== TowerConfig.TowerTypes.FREEZE)
         {
             freezeDuration = freezeDuration * 2;
         }
@@ -290,7 +290,7 @@ public class TurretController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretRemove);
 
-        CurrencyManager.Instance.AddCurrency(currentSellValue / 2);
+        CurrencyManager.Instance.AddCurrency(currentSellValue);
 
         UIManager.Instance.SetHoveringState(false);
         Destroy(gameObject);

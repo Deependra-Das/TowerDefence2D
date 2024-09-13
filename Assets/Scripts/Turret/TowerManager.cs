@@ -9,11 +9,11 @@ public class TowerManager : MonoBehaviour
     public static TowerManager Instance { get { return instance; } }
 
     [SerializeField]
-    private Tower[] towerList;
+    private Tower[] towers;
 
-    private TowerTypes selectedTower= TowerTypes.NONE;
+    private TowerConfig.TowerTypes selectedTower= TowerConfig.TowerTypes.NONE;
 
-    private List<Transform> turrets;
+    private List<Transform> turretList;
 
     private void Awake()
     {
@@ -30,12 +30,12 @@ public class TowerManager : MonoBehaviour
 
     private void Start()
     {
-        turrets = new List<Transform>();
+        turretList = new List<Transform>();
     }
 
-    public Tower GetTower(TowerTypes type)
+    public Tower GetTower(TowerConfig.TowerTypes type)
     {
-        Tower towerItem = Array.Find(towerList, item => item.towerType == type);
+        Tower towerItem = Array.Find(towers, item => item.towerType == type);
         if (towerItem != null)
         {
             return towerItem;
@@ -48,20 +48,20 @@ public class TowerManager : MonoBehaviour
         return GetTower(selectedTower);
     }
 
-    public void SetSelectedTower(TowerTypes type)
+    public void SetSelectedTower(TowerConfig.TowerTypes type)
     {
         switch(type)
         {
-            case TowerTypes.BASIC:
-                selectedTower = TowerTypes.BASIC;
+            case TowerConfig.TowerTypes.BASIC:
+                selectedTower = TowerConfig.TowerTypes.BASIC;
                 break;
 
-            case TowerTypes.HEAVY:
-                selectedTower = TowerTypes.HEAVY;
+            case TowerConfig.TowerTypes.HEAVY:
+                selectedTower = TowerConfig.TowerTypes.HEAVY;
                 break;
 
-            case TowerTypes.FREEZE:
-                selectedTower = TowerTypes.FREEZE;
+            case TowerConfig.TowerTypes.FREEZE:
+                selectedTower = TowerConfig.TowerTypes.FREEZE;
                 break;
 
         }
@@ -70,40 +70,24 @@ public class TowerManager : MonoBehaviour
 
     public void AddTurretToList(GameObject towerObj)
     {
-        turrets.Add(towerObj.transform);
+        turretList.Add(towerObj.transform);
     }
 
     public void DestroyAllTurretsOnScreen()
     {
-        if (turrets.Count > 0)
+        if (turretList.Count > 0)
         {
-            for (int i = 0; i < turrets.Count; i++)
+            for (int i = 0; i < turretList.Count; i++)
             {
-                if (turrets[i] != null)
+                if (turretList[i] != null)
                 {
-                    Destroy(turrets[i].transform.gameObject);
+                    Destroy(turretList[i].transform.gameObject);
                 }
 
             }
         }
 
-        turrets=new List<Transform> ();
+        turretList = new List<Transform> ();
 
     }
-}
-
-public enum TowerTypes
-{
-    BASIC,
-    HEAVY,
-    FREEZE,
-    NONE,
-}
-
-[Serializable]
-public class Tower
-{
-    public TowerTypes towerType;
-    public GameObject towerPrefab;
-    public int buildCost;
 }
