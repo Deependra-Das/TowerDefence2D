@@ -110,7 +110,7 @@ public class EnemyController : MonoBehaviour
         {
             EnemySpawnManager.onEnemyDestroy.Invoke();
             AudioManager.Instance.PlayEnemySFX(AudioConfig.AudioNames.enemyDeath);
-            GameManager.Instance.AddCurrency(currencyDrop);
+            CurrencyManager.Instance.AddCurrency(currencyDrop);
             isDead = true;
             Destroy(gameObject);
         }

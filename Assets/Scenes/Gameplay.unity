@@ -12319,6 +12319,7 @@ GameObject:
   - component: {fileID: 1303887753}
   - component: {fileID: 1303887754}
   - component: {fileID: 1303887755}
+  - component: {fileID: 1303887756}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -12359,6 +12360,7 @@ MonoBehaviour:
   gameOverControllerObj: {fileID: 2027265101}
   gameCompletedControllerObj: {fileID: 1163970589}
   gamePauseControllerObj: {fileID: 21760409}
+  playerHealthControllerObj: {fileID: 2067152200}
   startPoint: {fileID: 1487880941}
   path:
   - {fileID: 1259145095}
@@ -12374,10 +12376,6 @@ MonoBehaviour:
   - {fileID: 662575364}
   - {fileID: 276997962}
   - {fileID: 896625608}
-  currency: 0
-  playerHealth: 100
-  MaxHealth: 100
-  initialCurrency: 100
   isGameOver: 0
 --- !u!114 &1303887755
 MonoBehaviour:
@@ -12391,6 +12389,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e537919d652a56442a62d3925ac5854e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1303887756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303887752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42de007242432964483336e15a7c7f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currency: 0
+  initialCurrency: 100
 --- !u!1001 &1305785614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20173,6 +20185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2375e7d7cc0ac0846a47ab5cf7cd1e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameUIManagerObj: {fileID: 237691249}
+  playerHealth: 100
+  MaxHealth: 100
 --- !u!1001 &2078446213
 PrefabInstance:
   m_ObjectHideFlags: 0

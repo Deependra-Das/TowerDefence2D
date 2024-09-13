@@ -236,11 +236,11 @@ public class TurretController : MonoBehaviour
 
     public void UpgradeTurret()
     {
-        if(currentUpgradeCost>GameManager.Instance.currency)
+        if(currentUpgradeCost> CurrencyManager.Instance.currency)
         {
             return;
         }
-        GameManager.Instance.SpendCurrency(currentUpgradeCost);
+        CurrencyManager.Instance.SpendCurrency(currentUpgradeCost);
         upgradeLevel++;
         currentUpgradeCost = upgradeCost_Lvl2;
         switch(upgradeLevel)
@@ -290,7 +290,7 @@ public class TurretController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioConfig.AudioNames.turretRemove);
 
-        GameManager.Instance.AddCurrency(currentSellValue / 2);
+        CurrencyManager.Instance.AddCurrency(currentSellValue / 2);
 
         UIManager.Instance.SetHoveringState(false);
         Destroy(gameObject);

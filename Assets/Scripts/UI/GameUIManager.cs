@@ -72,7 +72,7 @@ public class GameUIManager : MonoBehaviour
 
     private void OnGUI()
     {
-        currencyText.text=GameManager.Instance.currency.ToString();
+        currencyText.text=CurrencyManager.Instance.currency.ToString();
     }
 
 

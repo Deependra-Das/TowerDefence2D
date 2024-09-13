@@ -19,19 +19,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GamePauseController gamePauseControllerObj;
 
+    [SerializeField]
+    private PlayerHealthController playerHealthControllerObj;
+
     public Transform startPoint;
     public Transform[] path;
-
-    public int currency;
-
-    [SerializeField]
-    private int playerHealth;
-
-    [SerializeField]
-    private int MaxHealth;
-
-    [SerializeField]
-    private int initialCurrency;
 
     public bool isGameOver;
 
@@ -58,46 +50,19 @@ public class GameManager : MonoBehaviour
 
     public void ResetGameManager()
     {
-        currency = initialCurrency;
-        playerHealth = MaxHealth;
-        gameUIManagerObj.setMaxHealth(MaxHealth);
         isGameOver = false;
+        playerHealthControllerObj.ResetPlayerHealth();
+        CurrencyManager.Instance.ResetCurrency();
         gameOverControllerObj.gameObject.SetActive(false);
         gameCompletedControllerObj.gameObject.SetActive(false);
         gamePauseControllerObj.gameObject.SetActive(false);
         UIManager.Instance.SetHoveringState(false);
     }
 
-    public void AddCurrency(int amount)
+    public void setGameOver()
     {
-        currency += amount;
-    }
-
-    public bool SpendCurrency(int amount)
-    {
-        if (amount <= currency)
-        {
-            currency -= amount; 
-            return true;
-        }
-        else
-        {
-            Debug.Log("Insufficient Funds");
-            return false;
-        }
-    }
-
-    public void DecreaseHealth(int amount)
-    {
-        playerHealth-=amount;
-        gameUIManagerObj.setHealth(playerHealth);
-
-        if (playerHealth<=0)
-        {
-            playerHealth = 0;
-            isGameOver = true;
-            OnGameOver();
-        }
+        isGameOver = true;
+        OnGameOver();
     }
 
     public void OnGameOver()
