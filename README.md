@@ -5,11 +5,11 @@
 
 ### Core Gameplay
  - Grid based level to place turrets & defend a block at the exit
- - Sruvive 5 enemy waves to win the game
+ - Survive 5 enemy waves to win the game
  - Preparation time at the beginning & in between enemy waves
  - Killing Enemies drops currency to buy new or upgrade existing turret towers to prepare for next wave
  - If enemy reaches the block at the exit, the player takes damage to health
- - if health reaches 0, its game over
+ - If health reaches 0, its game over
  
 ### Enemy Wave System
  - Enemies get spawned in specific order & number (flexible) for each & every Wave
@@ -34,7 +34,7 @@
  - Certain amount of Currency can be used to upgrade existing Turret Towers to level 2 to increase range
  - Half the amount currency of the build Cost + upgrade (if any) will be returned if any turret is sold
 
-### Currency & Upgrades
+### UI
  - UI menu to upgrade or remove turret
  - Pause Menu, Game Over Menu, Win Screen, Main Lobby Screen
 
